@@ -77,5 +77,5 @@ for result in results:
     print(type(result))
     result_dictionary=result.to_dict()
     print(type(result_dictionary))
-    print(result_dictionary.keys)
+    print(result_dictionary.keys())
     print("decision:", result_dictionary["cv_acceptance"])
