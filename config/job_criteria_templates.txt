@@ -1,0 +1,23 @@
+ml: {
+  "position": "Machine Learning Engineer",
+  "required_skills": ["Python", "TensorFlow", "Machine Learning", "Data Science", "PyTorch", "Scikit-learn"],
+  "preferred_skills": ["Deep Learning"],
+  "min_experience_years": 0,
+  "max_experience_years": 10,
+  "required_degree": "Bachelor",
+  "preferred_companies": [],
+  "minimum_skill_match_percentage": 40,
+  "minimum_validation_score": 0.7
+}
+
+marketing:{
+  "position": "Marketing Agent",
+  "required_skills": ["Digital Marketing", "SEO", "Content Creation", "Social Media Management", "Communication"],
+  "preferred_skills": ["Data Analysis", "Graphic Design", "Email Marketing"],
+  "min_experience_years": 1,
+  "max_experience_years": 5,
+  "required_degree": "Bachelor",
+  "preferred_companies": [],
+  "minimum_skill_match_percentage": 50,
+  "minimum_validation_score": 0.75
+}

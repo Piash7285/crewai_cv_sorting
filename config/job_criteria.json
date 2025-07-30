@@ -1,0 +1,11 @@
+{
+  "position": "Machine Learning Engineer",
+  "required_skills": ["Python", "TensorFlow", "Machine Learning", "Data Science", "PyTorch", "Scikit-learn"],
+  "preferred_skills": ["Deep Learning"],
+  "min_experience_years": 0,
+  "max_experience_years": 10,
+  "required_degree": "Bachelor",
+  "preferred_companies": [],
+  "minimum_skill_match_percentage": 40,
+  "minimum_validation_score": 0.7
+}

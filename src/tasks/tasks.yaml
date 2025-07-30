@@ -1,0 +1,50 @@
+cv_extract_task:
+  description: >
+    Extract raw content from the CV PDF located at {cv_path} using the custom CV parsing tool.
+  expected_output: >
+    Plain text content of the CV without any formatting or extra processing.
+
+cv_structuring_task:
+  description: >
+    Take the CV content and format it into the required Pydantic structure.
+    Do not add or infer data. Leave fields empty or null if missing.
+  expected_output: >
+    Valid JSON string strictly matching the Pydantic CV schema.
+
+job_matching_task:
+  description: >
+    Using the structured CV data and provided job criteria ({job_criteria}), score the match (0–100) and give a short explanation.
+  expected_output: >
+    {
+      "score": 0-100,
+      "summary": "Brief bullet-point explanation"
+    }
+
+linkedin_extract_task:
+  description: >
+    Extract raw content from the LinkedIn PDF at {linkedin_pdf_path} using the LinkedIn parser tool.
+  expected_output: >
+    Plain text extracted from the LinkedIn profile.
+
+linkedin_structuring_task:
+  description: >
+    Convert LinkedIn text to structured format as defined in the LinkedIn Pydantic schema.
+  expected_output: >
+    Valid JSON string strictly matching the LinkedIn schema. No added info.
+
+cross_check_task:
+  description: >
+    Compare the structured CV and LinkedIn JSONs.
+    Highlight any mismatched fields or inconsistencies in job history, education, or skills.
+  expected_output: >
+    A report listing matched and mismatched sections with any red flags.
+
+final_decision_task:
+  description: >
+    Based on the job matching and cross-check reports, decide if the candidate is suitable for hiring.
+    Justify with a brief explanation and return 'Yes' or 'No' in final verdict.
+  expected_output: >
+    {
+      "verdict": "Yes" or "No",
+      "reasoning": "Short justification"
+    }
