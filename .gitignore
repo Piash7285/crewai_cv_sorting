@@ -214,8 +214,8 @@ Icon
 
 # Project Specific
 # CV and LinkedIn PDF files (uncomment if you don't want to track them)
-# cvs/*.pdf
-# linkedin_pdfs/*.pdf
+cvs/*.pdf
+linkedin_pdfs/*.pdf
 
 # Output folders (processed results)
 accepted/
