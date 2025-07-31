@@ -1,5 +1,9 @@
+import json
+import os
+
 from crewai import Crew, Process
 from src.utils.FindCandidateProfile import get_candidate
+from src.utils.move_cv import move
 
 from src.agents.supervisor_agent import supervisor_agent
 from src.agents.cv_processor_agent import CV_processor_agent
@@ -35,11 +39,6 @@ criteria = {
 }
 
 profiles= get_candidate()
-print(profiles)
-for profile in profiles:
-    print("profile:")
-    print(profile["cv_path"])
-    print(profile["linkedin_path"])
 
 crew = Crew(
     agents=[CV_processor_agent,
@@ -62,20 +61,27 @@ crew = Crew(
 
     ],
     process=Process.hierarchical,
-    verbose=True
+    # verbose=True
+    verbose=False
 )
 results=[]
+accepted_path = os.path.abspath(os.path.join(os.getcwd(), "accepted"))
+rejected_path = os.path.abspath(os.path.join(os.getcwd(), "rejected"))
 for profile in profiles:
     # Run the crew
     print("Starting CV processing workflow...")
     result = crew.kickoff(inputs={"criteria": criteria,"cv_path": profile["cv_path"], "linkedin_path": profile["linkedin_path"]})
     results.append(result)
+    result_dict = result.json_dict
+    if result_dict["cv_acceptance"] == "Accepted":
+        move(profile["cv_path"], accepted_path)
+    else:
+        move(profile["cv_path"], rejected_path)
+
 print("Crew execution completed!")
 print("Results:", results)
 
 for result in results:
-    print(type(result))
-    result_dictionary=result.to_dict()
-    print(type(result_dictionary))
-    print(result_dictionary.keys())
-    print("decision:", result_dictionary["cv_acceptance"])
+    result_dict = result.json_dict
+    print(result_dict)
+    print("Final Decision:", result_dict["cv_acceptance"])

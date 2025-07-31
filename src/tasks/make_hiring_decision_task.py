@@ -3,6 +3,13 @@ from src.agents.acceptance_decision_agent import acceptance_decision_agent
 from src.tasks.cross_check_cv_and_linkedin_task import cross_check_cv_and_linkedin_task
 from src.tasks.job_criteria_matching_task import job_criteria_matching_task
 
+from pydantic import BaseModel
+
+class FinalDecisionOutput(BaseModel):
+    cv_acceptance: str
+    confidence_score: float
+    decision_reasoning: str
+
 make_acceptance_decision = Task(
     name="make_acceptance_decision_task",
     description=(
@@ -21,20 +28,16 @@ make_acceptance_decision = Task(
     ),
     expected_output=(
         "A comprehensive hiring decision report in JSON format containing:\n\n"
-        "{\n"
-        '  "cv_acceptance": "ACCEPTED|REJECTED",\n'
-        '  "confidence_score": "0.0-1.0",\n'
-        '  "decision_summary": "Executive summary of the hiring decision",\n'
-        '  "risk_assessment": {\n'
-        '    "overall_risk_level": "low|medium|high",\n'
-        '    "specific_risks": ["List of identified risks"],\n'
-        '    "mitigation_strategies": ["Suggested risk mitigation approaches"]\n'
-        '  },\n'
-        '  "decision_reasoning": {\n"Your overall opinion and thought process for your decision.",\n'
-        '}\n\n'
-        "The output will be structured in a way that hiring managers can easily interpret and use for decision-making. "
+        "{"
+        '  "cv_acceptance": <"ACCEPTED" or "REJECTED">,'
+        '  "confidence_score": "0.0-1.0",'
+        '  "decision_reasoning": <"Your overall opinion and thought process for your decision.">,'
+        "The output will be structured in a way that it can be converted to a python dictionary.\n "
+        "do not add any extra text or explanation outside of the JSON structure.\n"
         "Ensure that the analysis is thorough, actionable, and provides clear insights into the candidate's suitability for the position."
     ),
+    output_json=FinalDecisionOutput,
+
     agent=acceptance_decision_agent,
     context=[job_criteria_matching_task, cross_check_cv_and_linkedin_task],
 )
