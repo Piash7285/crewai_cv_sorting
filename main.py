@@ -73,15 +73,16 @@ for profile in profiles:
     result = crew.kickoff(inputs={"criteria": criteria,"cv_path": profile["cv_path"], "linkedin_path": profile["linkedin_path"]})
     results.append(result)
     result_dict = result.json_dict
-    if result_dict["cv_acceptance"] == "Accepted":
+    if result_dict["cv_acceptance"] == "ACCEPTED":
         move(profile["cv_path"], accepted_path)
     else:
         move(profile["cv_path"], rejected_path)
 
 print("Crew execution completed!")
-print("Results:", results)
+# print("Results:", results)
 
 for result in results:
     result_dict = result.json_dict
     print(result_dict)
     print("Final Decision:", result_dict["cv_acceptance"])
+    print("Final Decision:", result_dict["decision_reasoning"])
