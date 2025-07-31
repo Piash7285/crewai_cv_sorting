@@ -1,13 +1,11 @@
 # Sample CV files for testing
-# Add your PDF and DOCX CV files to this directory
+# Add your PDF CV files to this directory
 
 # Supported formats:
 # - PDF (.pdf)
-# - Microsoft Word (.docx, .doc)
 
 # Example files you can add:
 # - john_doe_resume.pdf
-# - jane_smith_cv.docx
 # - candidate_001.pdf
 
 # The system will automatically:
