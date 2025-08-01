@@ -41,7 +41,8 @@ class CVParserTool(BaseTool):
                 text += page.get_text()
 
             text += "---END CV CONTENT---"
-            print("Extracted text using pdfplumber",text)
+            # print("Extracted text from cv",text)
+            print("Extracted text from cv")
         except Exception as e:
             print(f"pdfplumber failed for {pdf_path}: {e}")
 

@@ -4,6 +4,7 @@ import os
 from crewai import Crew, Process
 from src.utils.FindCandidateProfile import get_candidate
 from src.utils.move_cv import move
+from cv_manager import check_positions, show_uploads, add_cvs
 
 from src.agents.supervisor_agent import supervisor_agent
 from src.agents.cv_processor_agent import CV_processor_agent
@@ -74,7 +75,16 @@ for profile in profiles:
     results.append(result)
     result_dict = result.json_dict
     if result_dict["cv_acceptance"] == "ACCEPTED":
+        print("📋 Available Positions:")
+        positions = check_positions()
+        add_cvs(profile["cv_path"], "software engineer")
+
+        print("\n👥 Uploaded CVs:")
+        uploads = show_uploads()
+        for upload in uploads:
+            print(f"   • {upload['name']} → {upload['position']}")
         move(profile["cv_path"], accepted_path)
+
     else:
         move(profile["cv_path"], rejected_path)
 

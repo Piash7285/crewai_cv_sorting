@@ -41,7 +41,8 @@ class LinkedInProfileParserTool(BaseTool):
                 text += page.get_text()
             doc.close()
             text += "---END PROFILE CONTENT---"
-            print("Extracted LinkedIn profile text successfully.", text)
+            # print("Extracted LinkedIn profile text successfully.", text)
+            print("Extracted LinkedIn profile text successfully.")
         except Exception as e:
             print(f"LinkedIn PDF extraction failed for {pdf_path}: {e}")
         return text

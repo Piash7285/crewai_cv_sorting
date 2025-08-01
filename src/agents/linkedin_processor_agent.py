@@ -28,7 +28,6 @@ linkedin_processor_agent = Agent(
     ),
     llm=get_llm(),
     allow_delegation=True,
-    verbose=True,
     max_rpm=10,
     max_retry_limit=3
 )
