@@ -218,8 +218,8 @@ cvs/*.pdf
 linkedin_pdfs/*.pdf
 
 # Output folders (processed results)
-accepted/
-rejected/
+#accepted/
+#rejected/
 
 # Logs
 *.log
